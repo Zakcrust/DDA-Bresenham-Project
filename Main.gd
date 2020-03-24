@@ -16,6 +16,12 @@ var drawing_method = "DDA"
 var drawing_mode = true
 
 
+
+func _input(event):
+	if event.is_action_pressed("ui_accept"):
+		remove_all_objects()
+	pass
+
 func _process(_delta):
 	if not drawing_mode:
 		return
@@ -88,3 +94,7 @@ func _on_Mode_mode(mode):
 func _on_Mode_draw_mode(draw_mode):
 	drawing_mode = draw_mode
 	pass # Replace with function body.
+
+func remove_all_objects():
+	for object in $DrawLayer.get_children():
+		object.queue_free()
